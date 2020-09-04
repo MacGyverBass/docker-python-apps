@@ -4,6 +4,7 @@ This is a repository with various applications written in Python and installed i
 
 ## List of Python Applications with Sources
 
+- `bpytop` - bpytop: Resource monitor that shows usage and stats for processor, memory, disks, network and processes.  [GitHub](https://github.com/aristocratos/bpytop)
 - `catt` - Cast All The Things: Allows you to send local/online videos or webpages to your Chromecast.  [GitHub](https://github.com/skorokithakis/catt)
 - `icdiff` - Improved colored diff.  [GitHub](https://github.com/jeffkaufman/icdiff)
 - `jc` - JSONifies the output of many CLI tools and file-types for easier parsing in scripts.  [GitHub](https://github.com/kellyjonbrazil/jc)
@@ -15,6 +16,18 @@ This is a repository with various applications written in Python and installed i
 ## Examples of Use
 
 Below are various examples for the above applications.  I will try to keep this list updated as more items are added.
+
+The following example runs `bpytop` with the host processes (using `--pid=host`) and network activity information (using `--net=host`) passed to the Docker image, as well as setting a volume for holding the `bpytop` configuration between executions (using `-v bpytop:/root/.config/bpytop/`).
+
+```sh
+docker run --rm -it \
+ --pid=host \
+ --net=host \
+ -v bpytop:/root/.config/bpytop/ \
+ macgyverbass/bpytop
+```
+
+Note that `/root/.config/bpytop/` is optional, but will lose any custom settings made within the program.  You can also set a bind mount to a host folder for keeping the configuration persistent.
 
 The following example runs `catt` with the command argument `scan` on the `host` network.  You can also use a `macvlan` for this, as long as it is on the same network as your Chromecast devices.
 

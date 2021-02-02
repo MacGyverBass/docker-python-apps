@@ -1,4 +1,4 @@
-FROM	python:3-alpine3.12
+FROM	macgyverbass/base-label:python3
 
 RUN	pip3 install jc
 
